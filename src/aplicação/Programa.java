@@ -59,15 +59,11 @@ public class Programa {
 		checkout = LocalDate.of(Integer.parseInt(dataCheckout.substring(6, 10)),
 				Integer.parseInt(dataCheckout.substring(3, 5)), Integer.parseInt(dataCheckout.substring(0, 2)));
 
-		if (checkout.isAfter(reserva.getCheckin()) == false || checkin.isAfter(reserva.getCheckin()) == false
-				|| checkout.isAfter(checkin) == false) {
-			System.out.println("check-out invalido: ");
+		if (reserva.alterarReserva(checkin, checkout) != null) {
+			System.out.println(reserva.alterarReserva(checkin, checkout));
 		} else {
-
-			reserva.alterarReserva(checkin, checkout);
 			System.out.println(reserva.imprimir());
 		}
-
-		sc.close();
 	}
+
 }

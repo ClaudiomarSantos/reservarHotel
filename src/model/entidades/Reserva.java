@@ -40,9 +40,14 @@ public class Reserva {
 		return this.checkout.getDayOfYear() - this.checkin.getDayOfYear();
 	}
 
-	public void alterarReserva(LocalDate checkin, LocalDate checkout) {
+	public String alterarReserva(LocalDate checkin, LocalDate checkout) {
+		if (checkout.isBefore(checkin) == true || checkin.isBefore(getCheckin()) == true
+				|| checkout.isAfter(getCheckin()) == false) {
+			return "check-out invalido: ";
+		}
 		this.checkin = checkin;
 		this.checkout = checkout;
+		return null;
 	}
 
 	public void formatarData() {
